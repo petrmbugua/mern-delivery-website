@@ -223,7 +223,7 @@ export default function Order({ match }) {
             <Typography
               type='subheading'
               component='h3'
-              className={classes.info}
+              className={classes.info} 
               color='primary'
             >
               {order.pickup_address.pickup_phone}

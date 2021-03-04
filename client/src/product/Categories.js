@@ -9,6 +9,8 @@ import GridListTile from '@material-ui/core/GridListTile';
 import Icon from '@material-ui/core/Icon';
 import { list } from './api-product.js';
 import Products from './Products';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     background: theme.palette.background.paper,
+    flexGrow: 1,
   },
   gridList: {
     flexWrap: 'nowrap',
@@ -33,6 +36,11 @@ const useStyles = makeStyles((theme) => ({
   card: {
     margin: 'auto',
     marginTop: 20,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
   title: {
     padding: `${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(
@@ -91,39 +99,56 @@ export default function Categories(props) {
   };
 
   return (
-    <div>
-      <Card className={classes.card}>
-        <Typography type='title' className={classes.title}>
-          Explore By Products Category
-        </Typography>
-        <div className={classes.root}>
-          <GridList className={classes.gridList} cols={4}>
-            {props.categories.map((tile, i) => (
-              <GridListTile
-                key={i}
-                className={classes.tileTitle}
-                style={{
-                  height: '64px',
-                  backgroundColor:
-                    selected == tile
-                      ? 'rgba(95, 139, 137, 0.56)'
-                      : 'rgba(95, 124, 139, 0.32)',
-                }}
-              >
-                <span className={classes.link} onClick={listbyCategory(tile)}>
-                  {tile}{' '}
-                  <Icon className={classes.icon}>
-                    {selected == tile && 'arrow_drop_down'}
-                  </Icon>
-                </span>
-              </GridListTile>
-            ))}
-          </GridList>
-        </div>
-        <Divider />
-        <Products products={products} searched={false} />
-      </Card>
-    </div>
+    <>
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <Typography type='title' className={classes.title}>
+                Place Order By Category
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <GridList className={classes.gridList} cols={4}>
+                {props.categories.map((tile, i) => (
+                  <GridListTile
+                    key={i}
+                    className={classes.tileTitle}
+                    style={{
+                      height: '64px',
+                      backgroundColor:
+                        selected == tile
+                          ? 'rgba(95, 139, 137, 0.56)'
+                          : 'rgba(95, 124, 139, 0.32)',
+                    }}
+                  >
+                    <span
+                      className={classes.link}
+                      onClick={listbyCategory(tile)}
+                    >
+                      {tile}{' '}
+                      <Icon className={classes.icon}>
+                        {selected == tile && 'arrow_drop_down'}
+                      </Icon>
+                    </span>
+                  </GridListTile>
+                ))}
+              </GridList>
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <Typography type='title' className={classes.title}>
+                Select Order Item (Prices  For Nairobi Region)
+              </Typography>
+              <Products products={products} searched={false} />
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
+    </>
   );
 }
 Categories.propTypes = {

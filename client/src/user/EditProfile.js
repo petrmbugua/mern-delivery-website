@@ -113,7 +113,7 @@ export default function EditProfile({ match }) {
           <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
           <TextField id="email" type="email" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal"/><br/>
           <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
-          <Typography variant="subtitle1" className={classes.subheading}>
+          {/* <Typography variant="subtitle1" className={classes.subheading}>
             Seller Account
           </Typography>
           <FormControlLabel
@@ -126,7 +126,7 @@ export default function EditProfile({ match }) {
                       onChange={handleCheck}
               />}
             label={values.seller? 'Active' : 'Inactive'}
-          />
+          /> */}
           <br/> {
             values.error && (<Typography component="p" color="error">
               <Icon color="error" className={classes.error}>error</Icon>

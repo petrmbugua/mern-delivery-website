@@ -27,7 +27,7 @@ const Menu = withRouter(({history}) => (
   <AppBar position="static">
     <Toolbar>
       <Typography variant="h6" color="inherit">
-        Petr Delivery
+        Delivery App
       </Typography>
       <div>
         <Link to="/">
