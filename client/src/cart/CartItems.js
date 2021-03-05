@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import auth from './../auth/auth-helper';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import cart from './cart-helper.js';
 import { Link } from 'react-router-dom';
+import { Media } from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -134,41 +132,19 @@ export default function CartItems(props) {
           {cartItems.map((item, i) => {
             return (
               <span key={i}>
-                <Card className={classes.cart}>
-                  <CardMedia
-                    className={classes.cover}
-                    image={'/api/product/image/' + item.product._id}
-                    title={item.product.name}
+                <Media>
+                  <img
+                    width={64}
+                    height={64}
+                    className='mr-3'
+                    src={'/api/product/image/' + item.product._id}
+                    alt={item.product.name}
                   />
-                  <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                      <Link to={'/product/' + item.product._id}>
-                        <Typography
-                          type='title'
-                          component='h3'
-                          className={classes.productTitle}
-                          color='primary'
-                        >
-                          {item.product.name}
-                        </Typography>
-                      </Link>
-                      <div>
-                        <Typography
-                          type='subheading'
-                          component='h3'
-                          className={classes.price}
-                          color='primary'
-                        >
-                          Kes. {item.product.price}
-                        </Typography>
-                        <span className={classes.itemTotal}>
-                          Kes. {item.product.price * item.quantity}
-                        </span>
-                        {/* <span className={classes.itemShop}>
-                          Shop: {item.product.shop.name}
-                        </span> */}
-                      </div>
-                    </CardContent>
+                  <Media.Body>
+                    <Link to={'/product/' + item.product._id}>
+                      <h5>{item.product.name}</h5>
+                    </Link>
+                    <p className='lead'>Kes. {item.product.price}</p>
                     <div className={classes.subheading}>
                       Quantity:{' '}
                       <TextField
@@ -191,10 +167,14 @@ export default function CartItems(props) {
                       >
                         x Remove
                       </Button>
+                      <p className='lead'>
+                        {' '}
+                        Total Price - Kes. {item.product.price * item.quantity}
+                      </p>
                     </div>
-                  </div>
-                </Card>
-                <Divider />
+                  </Media.Body>
+                </Media>
+               
               </span>
             );
           })}
@@ -217,7 +197,7 @@ export default function CartItems(props) {
                 </Link>
               ))}
             <Link to='/' className={classes.continueBtn}>
-              <Button variant='contained'>Continue Shopping</Button>
+              <Button variant='contained'>Return To Categories</Button>
             </Link>
           </div>
         </span>

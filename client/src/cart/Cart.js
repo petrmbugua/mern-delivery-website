@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import CartItems from './CartItems';
 import Checkout from './Checkout';
+import { Col, Container, Row } from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,17 +21,17 @@ export default function Cart() {
   };
 
   return (
-    <div className={classes.root}>
-      <Grid container spacing={8}>
-        <Grid item xs={6} sm={6}>
+    <Container>
+      <Row>
+        <Col xs={12} md={6}>
           <CartItems checkout={checkout} setCheckout={showCheckout} />
-        </Grid>
+        </Col>
         {checkout && (
-          <Grid item xs={6} sm={6}>
+          <Col xs={12} md={6}>
             <Checkout />
-          </Grid>
+          </Col>
         )}
-      </Grid>
-    </div>
+      </Row>
+    </Container>
   );
 }

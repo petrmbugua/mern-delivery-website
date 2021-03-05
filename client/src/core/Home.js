@@ -11,12 +11,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 export default function Home() {
   const classes = useStyles();
   const [categories, setCategories] = useState([]);
- 
+
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
@@ -33,12 +31,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={classes.root}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={12}>
-          <Categories categories={categories} />
-        </Grid>
-      </Grid>
-    </div>
+    <>
+      <Categories categories={categories} />
+    </>
   );
 }
